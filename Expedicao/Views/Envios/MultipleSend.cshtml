@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Envio de Materiais";
+    var howMany = 10;
+}
+
+@section Styles{
+    @Styles.Render("~/Content/tingleStyle")
+}
+
+<h2 class="center">Envio de Materiais</h2>
+<div class="container">
+    @*<div id="message" class="alert"></div>*@
+    <div class="row jumbotron">
+        <div class="form-inline">
+            <div class="form-group">
+                <label class="control-label">Sede Origem</label>
+                <div class="">
+                    @Html.DropDownList("SedeOrigemId", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="">Sede Destino</label>
+                <div class="">
+                    @Html.DropDownList("SedeDestinoId", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Data Envio:</label>
+                <div>                   
+                    <input class="date form-control" id="sendDate" placeholder="*Campo Optativo*"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-condensed" id="tbSends">
+                <tr class="standardHeader centerHeader sendHeader">
+                    <th>
+                        Descrição
+                    </th>
+                    <th>
+                        Qtd
+                    </th>
+                    <th>
+                        Ordem Manut
+                    </th>
+                    <th>
+                        N. Série
+                    </th>
+                    <th>
+                        Tipos de Transporte
+                    </th>
+                    <th>
+                        Nota Fiscal
+                    </th>
+                    <th>
+                        Motivo
+                    </th>
+                    <th>
+                        N. Imp. Nota
+                    </th>
+                    <th>
+                        Nota Transf SAP
+                    </th>
+                    <th>
+                        ID (Sist. Mat)
+                    </th>
+                </tr>
+                @for (int i = 0; i < howMany; i++)
+                {
+                    <tr>
+                        <td><input type="text" id="descricao" class="form-control" /></td>
+                        <td><input type="number" id="qtd" class="form-control numberInput" /></td>
+                        <td><input type="text" id="ordemManutencao" class="form-control" /></td>
+                        <td><input type="text" id="numeroSerie" class="form-control" /></td>
+                        <td>@Html.DropDownList("TipoTransporteId", null, htmlAttributes: new { @class = "form-control", @id = "tipoTransporte" })</td>
+                        <td><input type="text" id="notaFiscal" class="form-control" /></td>
+                        <td>@Html.DropDownList("MotivoId", null, htmlAttributes: new { @class = "form-control", @id = "motivo" })</td>
+                        <td><input type="text" id="notaImpressao" class="form-control" /></td>
+                        <td><input type="text" id="notaSap" class="form-control" /></td>
+                        <td><input type="number" id="idMateriais" class="form-control numberInput" /></td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <button id="actionButton" class="btn btn-primary center-block">Enviar Todos</button>
+    </div>
+    <div type="text" data-save-action-url="@Url.Action("")" id="baseUri" />
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/envioViewModel")
+    @Scripts.Render("~/bundles/tingle")
+    @Scripts.Render("~/bundles/batchSends")
+}

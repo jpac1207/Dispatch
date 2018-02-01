@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class=" row jumbotron imageBackground">
+    <h1>Expedições Eletroeletrônica</h1>
+    <p class="lead">Sistema para controle de envio e recebimento de Materiais</p>
+    @*<p><a href="" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+</div>
+
+<div class="row jumbotron imageBackground">
+    <div class="col-md-4">        
+        <p>@Html.ActionLink("Envio de Materiais", "MultipleSend", "Envios", new { }, new { @class = "btn btn-primary btn-lg btn-block" })</p>
+    </div>
+    <div class="col-md-4">        
+     
+        <p>@Html.ActionLink("Pendentes / Confirmação", "Index", "Envios", new { status = 2 }, new { @class = "btn btn-primary btn-lg btn-block" })</p>
+    </div>
+    <div class="col-md-4">      
+        <p>@Html.ActionLink("Relatório", "Index", "Envios", new { }, new { @class = "btn btn-primary btn-lg btn-block" })</p>
+    </div>
+</div>
+
+@*<div class="row jumbotron imageBackground">
+    <div class="col-md-4">
+        <h2>Recebidos</h2>
+        <p>
+            <ul>
+                <li>Envios para a Minha Sede</li>
+                <li>Confirmar Recebimento</li>
+            </ul>
+        </p>
+        <p>@Html.ActionLink("Recebidos", "Received", "Envios", new { }, new { @class = "btn btn-default btn-lg" })</p>
+    </div>
+    
+    <div class="col-md-4">
+        <h2>Gráficos</h2>
+        <p>
+            <ul>
+                <li>Enviados / Recebidos</li>
+            </ul>
+        </p>
+        <p>@Html.ActionLink("Gráficos", "Index", "Report", new { }, new { @class = "btn btn-default btn-lg" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Sedes</h2>
+        <p>
+            <ul>
+                <li>Adicionar / Editar /Excluir</li>
+            </ul>
+        </p>
+        <p>@Html.ActionLink("Sedes", "Index", "Sedes", new { }, new { @class = "btn btn-default btn-lg" })</p>
+    </div>
+</div>*@

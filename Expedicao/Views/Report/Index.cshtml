@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="">
+    <div class="container">
+        <div class="jumbotron imageBackground">
+            <h2 class="text-center">Relatório</h2>
+        </div>
+
+        <div class="row jumbotron form-inline blackBackground">
+            <div class="form-group leftSpace">
+                <label class="label" for="month">Mês</label>
+                <select id="month" class="form-control">
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+            </div>
+            <div class="form-group leftSpace">
+                <label class="label" for="year">Ano:</label>
+                <input type="text" class="form-control" id="year" placeholder="Ano" />
+            </div>
+            <div class="form-group leftSpace">
+                <button class="btn btn-primary" id="actionBtn">Gerar Relatório</button>
+            </div>
+        </div>
+
+        <div class="blackBackground">
+            <div class="">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="mainChart" class="divRounded">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div id="mainChartSede" class="divRounded">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="topSpace bottomSpace">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="monthChart">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="monthChartSede">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/highcharts")
+    @Scripts.Render("~/bundles/report")
+}

@@ -1,0 +1,4 @@
+27/12/2017 13:25:36 => Não é possível redirecionar após os cabeçalhos HTTP terem sido enviados.
+27/12/2017 13:25:36 =>    em System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   em System.Web.HttpResponseWrapper.Redirect(String url, Boolean endResponse)
+   em Expedicao.Controllers.EnviosController.Received(QueryOptions queryOptions) na C:\Users\João Pedro\Documents\Visual Studio 2017\Projects\Expedicao\Expedicao\Controllers\EnviosController.cs:linha 58

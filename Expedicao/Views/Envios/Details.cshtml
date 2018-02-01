@@ -1,0 +1,106 @@
+﻿@model Expedicao.Models.Envio
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Envio</h4>
+    <hr />
+    <dl class="dl-horizontal jumbotron">
+        <dt>
+            Ordem de Manutenção
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrdemManutencao)
+        </dd>
+
+        <dt>
+            Descrição
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantidade)
+        </dd>
+
+        <dt>
+            Número Série
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroSerie)
+        </dd>
+
+        <dt>
+           Tipo Transporte
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoTransporteId)
+        </dd>
+
+        <dt>
+            Nota Fiscal
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotaFiscal)
+        </dd>
+
+        <dt>
+            Motivo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MotivoId)
+        </dd>
+
+        <dt>
+            Número Impressão Nota
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroImpressaoNota)
+        </dd>
+
+        <dt>
+            Nota Transferência SAP
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotaTransferenciaSap)
+        </dd>
+
+        <dt>
+           Id Solicitação (Sistema de Materiais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdSolicitacao)
+        </dd>
+
+        <dt>
+            Sede
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SedeId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar para a lista", "Index")
+</p>

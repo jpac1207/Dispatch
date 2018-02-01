@@ -1,0 +1,232 @@
+﻿@model IEnumerable<Expedicao.Models.Envio>
+@using Expedicao.Extensions
+@using Expedicao.Models
+@using Newtonsoft.Json
+@using System.Collections.Specialized
+@{
+    ViewBag.Title = "Index";
+    var queryOptions = (QueryOptions)ViewBag.QueryOptions;
+}
+
+<h2 class="centralText">Envios</h2>
+<div class="container-fluid">
+    @*<div class="jumbotron imageBackground">
+        <ul class="clearList horizontalList ">
+            <li>@Html.ActionLink("Criar Novo Envio", "Create", new { }, new { @class = "btn btn-primary" })</li>
+            <li>@Html.ActionLink("Enviar Todos Dessa Página", "SendAll", new { }, new { @class = "btn btn-danger" })</li>
+        </ul>
+    </div>*@
+
+    @{
+        if (ViewBag.Message != null)
+        {
+            if (ViewBag.Class != null)
+            {
+                <div class="@ViewBag.Class">
+                    @ViewBag.Message
+                </div>
+            }
+            else
+            {
+                <div class="alert-info">
+                    @ViewBag.Message
+                </div>
+            }
+        }
+    }
+    
+    @using (Html.BeginForm("Index", "Envios", FormMethod.Get))
+      {
+        <div class="form-inline jumbotron imageBackground">
+            <div class="form-group">
+                <label>Data Envio: </label>
+                <input class="form-control date" name="dataEnvioInicio" placeholder="De" value="@Request["dataEnvioInicio"]" />
+                <input class="form-control date" name="dataEnvioFim" placeholder="Até" value="@Request["dataEnvioFim"]" />
+                <button class="btn btn-primary">Filtrar</button>
+            </div>
+        </div>
+        <div class="table-responsive">
+
+            <table class="table table-bordered centralText smallFont table-responsive jumbotron">
+
+                <tr class="standardHeader centerHeader sendHeader">
+                    <th>
+                        @Html.DropDownList("sedeOrigem", (ViewBag.SedesOrigem as SelectList), new { onchange = "form.submit()", @class = "black", placeholder = "Sedes" })
+                    </th>
+                    <th>
+                        @Html.DropDownList("sedeDestino", (ViewBag.SedesDestino as SelectList), new { onchange = "form.submit()", @class = "black", placeholder = "Sedes" })
+                    </th>
+                    <th>
+                        @Html.TextBox("descricao", Request["descricao"], null, new { onchange = "form.submit()", @class = "littleControl black", placeholder = "Descrição" })
+                    </th>
+                    <th>
+                        Qtd
+                    </th>
+                    <th>
+                        @Html.TextBox("ordemManutencao", Request["ordemManutencao"], null, new { onchange = "form.submit()", @class = "mediumControl black", placeholder = "Ordem Manut." })
+                    </th>
+                    <th>
+                        @Html.TextBox("numeroSerie", Request["numeroSerie"], null, new { onchange = "form.submit()", @class = "smallControl black", placeholder = "N. Série" })
+                    </th>
+                    <th>
+                        @Html.DropDownList("tiposTransportes", (ViewBag.TiposTransporteList as SelectList), new { onchange = "form.submit()", @class = "black", placeholder = "Tipos de Transporte" })
+                    </th>
+                    <th>
+                        @Html.TextBox("notaFiscal", Request["notaFiscal"], null, new { onchange = "form.submit()", @class = "smallControl black", placeholder = "Nota Fiscal" })
+                    </th>
+                    <th>
+                        @Html.DropDownList("motivos", (ViewBag.MotivosList as SelectList), new { onchange = "form.submit()", @class = "black", placeholder = "Motivos" })
+                    </th>
+                    <th>
+                        @Html.TextBox("numeroImpressaoNota", Request["numeroImpressaoNota"], null, new { onchange = "form.submit()", @class = "mediumControl black", placeholder = "N. Impr. Nota" })
+                    </th>
+                    <th>
+                        @Html.TextBox("notaSap", Request["notaSap"], null, new { onchange = "form.submit()", @class = "mediumControl black", placeholder = "Nota Transf SAP" })
+                    </th>
+                    <th>
+                        @Html.TextBox("idSolicitacao", Request["idSolicitacao"], null, new { onchange = "form.submit()", @class = "black mediumControl", placeholder = "ID (Sist. Mater)" })
+                    </th>
+                    <th>
+                        @Html.TextBox("dataCriacao", Request["dataCriacao"], null, new { onchange = "form.submit()", @class = "mediumControl black date", placeholder = "Data Criação" })
+                    </th>
+                    <th>
+                        @Html.TextBox("dataEnvio", Request["dataEnvio"], null, new { onchange = "form.submit()", @class = "mediumControl black date", placeholder = "Data Envio" })
+                    </th>
+                    <th>
+                        @Html.TextBox("dataRecebimento", Request["dataRecebimento"], null, new { onchange = "form.submit()", @class = "mediumControl black date", placeholder = "Data Recebimento" })
+                    </th>
+                    <th>
+                        @Html.TextBox("matriculaDespachante", Request["matriculaDespachante"], null, new { onchange = "form.submit()", @class = "mediumControl black", placeholder = "Enviado Por" })
+                    </th>
+                    <th>
+                        @Html.TextBox("matriculaRecebedor", Request["matriculaRecebedor"], null, new { onchange = "form.submit()", @class = "mediumControl black", placeholder = "Recebido Por"})
+                    </th>
+                    <th>
+                        @Html.DropDownList("status", (ViewBag.StatusList as SelectList), new { onchange = "form.submit()", @class = "mediumControl black", placeholder = "Status" })
+                    </th>
+                    <th class="mediumTableCell"></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SedeOrigem.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SedeDestino.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descricao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantidade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrdemManutencao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumeroSerie)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoTransporte.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NotaFiscal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Motivo.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumeroImpressaoNota)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NotaTransferenciaSap)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdSolicitacao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataCriacao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataEnvio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataRecebimento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MatriculaDespachante)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MatriculaRecebedor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CurrentStatus)
+                            @{
+                                switch (item.CurrentStatus)
+                                {
+                                    case "Enviado":
+                                        <span class="glyphicon glyphicon-send"></span>
+                                        break;
+                                    case "Recebido":
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                        break;
+                                    case "Aguardando Envio":
+                                        <span class="glyphicon glyphicon-exclamation-sign"></span>
+                                        break;
+                                    default:
+                                        <span class="glyphicon glyphicon-asterisk"></span>
+                                        break;
+                                }
+                            }
+                        </td>
+                        <td>
+                            @* @Html.ActionLink("Enviar", "Send", new { id = item.Id }, new { @class = "btn btn-info btn-xs" })
+                                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" }) |
+                                @Html.ActionLink("Excluir", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })*@
+                            @{
+                                if (item.CurrentStatus.Equals("Aguardando Envio"))
+                                {
+                                    <a class="btn btn-info btn-xs" href="@Url.Action("Send/" + item.Id, "Envios")">Enviar</a>
+                                    Html.Raw("|");
+                                    <a class="btn btn-primary btn-xs" href="@Url.Action("Edit/" + item.Id, "Envios")">Editar</a>
+                                    Html.Raw("|");
+                                    <a class="btn btn-danger btn-xs" href="@Url.Action("Delete/" + item.Id, "Envios")">Excluir</a>
+                                }
+                                else if (item.CurrentStatus.Equals("Enviado"))
+                                {
+                                    <a class="btn btn-danger btn-xs" href="@Url.Action("Confirm/" + item.Id, "Envios")">Confirmar</a>
+                                    Html.Raw("|");
+                                    <a class="btn btn-primary btn-xs" href="@Url.Action("Edit/" + item.Id, "Envios")">Editar</a>
+                                    Html.Raw("|");
+                                    <a class="btn btn-danger btn-xs" href="@Url.Action("Delete/" + item.Id, "Envios")">Excluir</a>
+                                }
+                                else if (item.CurrentStatus.Equals("Recebido"))
+                                {
+                                    <a class="btn btn-primary btn-sm" href="@Url.Action("Edit/" + item.Id, "Envios")">Editar</a>
+                                    Html.Raw("|");
+                                    <a class="btn btn-danger btn-sm" href="@Url.Action("Delete/" + item.Id, "Envios")">Excluir</a>
+                                }
+                            }
+
+                        </td>
+                    </tr>
+                                }
+
+            </table>
+
+
+        </div>
+     }
+    @Html.BuildNextPreviousLinks(queryOptions, "Index")
+    @{
+        if (Model.Count() > 0)
+        {
+            var parameters = Html.GetCurrentParameters(Request);
+            <a class="btn btn-primary btn-xs center-block" href="@Url.Action("")/Export?SortOrder=@queryOptions.SortOrder&SortField=@queryOptions.SortField&CurrentPage=@queryOptions.CurrentPage&PageSize=@queryOptions.PageSize&@parameters">Exportar</a>
+            @*@Html.ActionLink("Exportar", "Export", new { queryOptions.SortOrder, queryOptions.SortField, queryOptions.CurrentPage, queryOptions.PageSize, parameters }, new { @class = "btn btn-primary btn-xs center-block" })*@
+        }
+    }
+
+</div>

@@ -1,0 +1,188 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.standardGreen {
+    background-color: rgb(2, 123, 111);
+}
+
+.whiteFont {
+    color: white !important;
+}
+
+.standardHeader {
+    background-color: rgb(2, 123, 111);
+    color: white;
+}
+
+.mediumTextArea {
+    box-sizing: border-box;
+    width: 282px;
+}
+
+.textAreaWrapper {
+    display: inline-block;
+}
+
+.largeTableCell {
+    min-width: 250px;
+}
+
+.mediumTableCell {
+    min-width: 220px;
+}
+
+.smallTableCell {
+    min-width: 150px;
+}
+
+.centerHeader > th {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centralText {
+    text-align: center;
+}
+
+.smallFont {
+    font-size: 10px;
+}
+
+li.disabled a {
+    pointer-events: none;
+}
+
+.clearList {
+    list-style: none;
+}
+
+.horizontalList > li {
+    display: inline-block;
+}
+
+.spacedList {
+    float: left;
+}
+
+.smallControl {
+    max-width: 50px;
+}
+
+.littleControl {
+    max-width: 50px;
+}
+
+.mediumControl {
+    max-width: 80px;
+}
+
+.black {
+    color: black;
+}
+
+.blackBackground {
+    background-color: black;
+}
+
+.gray {
+    background-color: #eee;
+}
+
+.sendHeader > th {
+    padding-right: 4px !important;
+    padding-left: 4px !important;
+}
+
+.headerImage {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+    width: 1139px;
+    border-radius: 5px;
+}
+
+.imageBackground {
+    background-image: url('Images/backcground.png');
+    background-repeat: no-repeat;
+    color: white;
+    /*opacity: 0.9;*/
+}
+
+.imageBackground2 {
+    background-image: url('Images/galpao2.jpg');
+    background-repeat: no-repeat;
+    color: white;
+}
+
+/*dt::after {
+    content: ":";
+}
+
+dt {
+    float: left;
+    clear: left;    
+}*/
+
+dl {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.leftSpace {
+    margin-left: 5px;
+}
+
+.chartDiv {
+    border: 1px solid;
+    border-radius: 2px;
+    background-color: #eee;
+}
+
+.topSpace {
+    margin-top: 20px;
+}
+
+.bottomSpace {
+    margin-bottom: 20px;
+}
+
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.numberInput {
+    width: 80px;
+}
+
+.divRounded {
+    border-radius: 25px;
+}

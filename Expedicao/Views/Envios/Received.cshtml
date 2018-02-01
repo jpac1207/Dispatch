@@ -1,0 +1,190 @@
+﻿@model IEnumerable<Expedicao.Models.Envio>
+@using Expedicao.Extensions
+@using Expedicao.Models
+
+@{
+    ViewBag.Title = "Confirmar Recebimento";
+    var queryOptions = (QueryOptions)ViewBag.QueryOptions;
+}
+
+<h1 class="centralText">Materiais Recebidos</h1>
+
+<div class="jumbotron imageBackground2">
+
+</div>
+
+@{
+    if (ViewBag.Message != null)
+    {
+        if (ViewBag.Class != null)
+        {
+            <p class="@ViewBag.Class">
+                @ViewBag.Message
+            </p>
+        }
+        else
+        {
+            <p class="alert-info">
+                @ViewBag.Message
+            </p>
+        }
+    }
+}
+
+<div class="table-responsive">
+    @using (Html.BeginForm("Received", "Envios", FormMethod.Get))
+    {
+        <div class="form-inline jumbotron">
+            <div class="form-group">
+                <label>Data Envio: </label>
+                <input class="form-control date" name="dataEnvioInicio" placeholder="De" value="@Request["dataEnvioInicio"]" />
+                <input class="form-control date" name="dataEnvioFim" placeholder="Até" value="@Request["dataEnvioFim"]" />
+                <button class="btn btn-primary">Filtrar</button>
+            </div>
+        </div>
+        <table class="table table-bordered centralText jumbotron smallFont">
+
+            <tr class="standardHeader centerHeader sendHeader">
+                <th>
+                    @Html.DropDownList("sedeOrigem", (ViewBag.SedesOrigem as SelectList), new { onchange = "form.submit()", @class = "black", placeholder = "Sedes" })
+                </th>
+                <th>
+                    <label class="smallControl">Sede Destino</label>
+                </th>
+                <th>
+                    @Html.TextBox("descricao", Request["descricao"], null, new { onchange = "form.submit()", @class = "littleControl black", placeholder = "Descrição" })
+                </th>
+                <th>
+                    Qtd
+                </th>
+                <th>
+                    @Html.TextBox("ordemManutencao", Request["ordemManutencao"], null, new { onchange = "form.submit()", @class = "mediumControl black", placeholder = "Ordem Manut." })
+                </th>
+                <th>
+                    @Html.TextBox("numeroSerie", Request["numeroSerie"], null, new { onchange = "form.submit()", @class = "smallControl black", placeholder = "N. Série" })
+                </th>
+                <th>
+                    @Html.DropDownList("tiposTransportes", (ViewBag.TiposTransporteList as SelectList), new { onchange = "form.submit()", @class = "black", placeholder = "Tipos de Transporte" })
+                </th>
+                <th>
+                    @Html.TextBox("notaFiscal", Request["notaFiscal"], null, new { onchange = "form.submit()", @class = "smallControl black", placeholder = "Nota Fiscal" })
+                </th>
+                <th>
+                    @Html.DropDownList("motivos", (ViewBag.MotivosList as SelectList), new { onchange = "form.submit()", @class = "black", placeholder = "Motivos" })
+                </th>
+                <th>
+                    @Html.TextBox("numeroImpressaoNota", Request["numeroImpressaoNota"], null, new { onchange = "form.submit()", @class = "mediumControl black", placeholder = "N. Impressão Nota" })
+                </th>
+                <th>
+                    @Html.TextBox("notaSap", Request["notaSap"], null, new { onchange = "form.submit()", @class = "mediumControl black", placeholder = "Nota Transf SAP" })
+                </th>
+                <th>
+                    @Html.TextBox("idSolicitacao", Request["idSolicitacao"], null, new { onchange = "form.submit()", @class = "black", placeholder = "ID Solicit (Sist. Materiais)" })
+                </th>
+                <th>
+                    @Html.TextBox("dataEnvio", Request["dataEnvio"], null, new { onchange = "form.submit()", @class = "mediumControl black date", placeholder = "Data Envio" })
+                </th>
+                <th>
+                    @Html.TextBox("dataRecebimento", Request["dataRecebimento"], null, new { onchange = "form.submit()", @class = "mediumControl black date", placeholder = "Data Recebimento" })
+                </th>
+                <th>
+                    @Html.TextBox("matriculaDespachante", Request["matriculaDespachante"], null, new { onchange = "form.submit()", @class = "mediumControl black", placeholder = "Enviado Por" })
+                </th>
+                <th>
+                    @Html.DropDownList("status", (ViewBag.StatusList as SelectList), new { onchange = "form.submit()", @class = "mediumControl black", placeholder = "Status" })
+                </th>
+                <th class="smallTableCell"></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SedeOrigem.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SedeDestino.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrdemManutencao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumeroSerie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoTransporte.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NotaFiscal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Motivo.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumeroImpressaoNota)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NotaTransferenciaSap)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdSolicitacao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataEnvio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataRecebimento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MatriculaDespachante)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CurrentStatus)
+                        @{
+                            switch (item.CurrentStatus)
+                            {
+                                case "Enviado":
+                                    <span class="glyphicon glyphicon-send"></span>
+                                    break;
+                                case "Recebido":
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                    break;
+                                case "Aguardando Envio":
+                                    <span class="glyphicon glyphicon-exclamation-sign"></span>
+                                    break;
+                                default:
+                                    <span class="glyphicon glyphicon-asterisk"></span>
+                                    break;
+                            }
+                        }
+                    </td>
+                    <td>
+                        @{if (item.CurrentStatus.Equals("Enviado"))
+                            {
+                                <a class="btn btn-danger btn-xs" href="@Url.Action("Confirm/" + item.Id, "Envios")">Confirmar Recebimento</a>
+                                //Html.ActionLink("Confirmar Recebimento", "Confirm", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" });
+                            }
+                        }
+
+                    </td>
+                </tr>
+             }
+        </table>
+       
+     }
+    @Html.BuildNextPreviousLinks(queryOptions, "Received")
+</div>
+@{
+    if (Model.Count() > 0)
+    {
+        var parameters = Html.GetCurrentParameters(Request);
+        <a class="btn btn-primary btn-xs center-block" href="@Url.Action("")/Export/@Model.FirstOrDefault().SedeDestino.Id?SortOrder=@queryOptions.SortOrder&SortField=@queryOptions.SortField&CurrentPage=@queryOptions.CurrentPage&PageSize=@queryOptions.PageSize&@parameters">Exportar</a>
+        @*@Html.ActionLink("Exportar", "Export", new { queryOptions.SortOrder, queryOptions.SortField, queryOptions.CurrentPage, queryOptions.PageSize, id = Model.FirstOrDefault().SedeDestino.Id }, new { @class = "btn btn-primary btn-xs center-block" })*@
+    }
+}

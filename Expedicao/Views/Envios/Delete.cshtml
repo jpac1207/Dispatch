@@ -1,0 +1,121 @@
+﻿@model Expedicao.Models.Envio
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Excluir</h2>
+
+<h3>O(A) senhor(a) realmente deseja excluir esse item?</h3>
+<div>
+    <h4>Envio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Sede Origem
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SedeOrigem.Nome)
+        </dd>
+
+        <dt>
+            Sede Destino
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SedeDestino.Nome)
+        </dd>       
+
+        <dt>
+            Descrição
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantidade)
+        </dd>
+
+        <dt>
+            Ordem Manutenção
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrdemManutencao)
+        </dd>
+
+        <dt>
+           Número de Série
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroSerie)
+        </dd>
+
+        <dt>
+            Tipo de Transporte
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoTransporte.Nome)
+        </dd>
+
+        <dt>
+            Nota Fiscal
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotaFiscal)
+        </dd>
+
+        <dt>
+            Motivo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo.Nome)
+        </dd>
+
+        <dt>
+            Número Impressão Nota
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroImpressaoNota)
+        </dd>
+
+        <dt>
+           Nota Transferência SAP
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotaTransferenciaSap)
+        </dd>
+
+        <dt>
+            ID Solicitação
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdSolicitacao)
+        </dd>       
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar para a lista", "Index")
+        </div>
+    }
+</div>
