@@ -175,7 +175,7 @@ namespace Expedicao.Controllers
         }
 
         // GET: Envios/Edit/5
-        [AdminFilter]
+        [AutenticationFilter]
         public ActionResult Edit(int? id)
         {
             try

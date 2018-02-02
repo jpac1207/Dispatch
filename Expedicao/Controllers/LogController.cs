@@ -48,17 +48,8 @@ namespace Expedicao.Controllers
                     if (g != null)
                     {
                         Session["userId"] = user.ToString();
-
-                        if (g.GrantId == 1)
-                        {
-                            dbUser.Dispose();
-                            return RedirectToAction("Received", "Envios");
-                        }
-                        else
-                        {
-                            dbUser.Dispose();
-                            return RedirectToAction("Index", "Home");
-                        }
+                        dbUser.Dispose();
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {

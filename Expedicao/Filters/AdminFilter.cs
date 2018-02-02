@@ -44,7 +44,7 @@ namespace Expedicao.Filters
 
                         if (grantedUser == null)
                         {
-                            myController.ControllerContext.HttpContext.Response.Redirect("172.20.15.22/despacho/Envios/Received", true);
+                            myController.ControllerContext.HttpContext.Response.Redirect("172.20.15.22/despacho/Envios/Index", true);
                         }
                     }
                 }
